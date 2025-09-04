@@ -33,7 +33,7 @@
         }
         .nav-inactive { background-color: transparent; color: #4b5563; }
         
-        /* YENİ: Video modalı için stil */
+        /* Video modalı için stil */
         .video-aspect-ratio {
             position: relative;
             width: 100%;
@@ -125,7 +125,7 @@
         </div>
     </div>
 
-    <!-- YENİ: Easter Egg Video Modalı -->
+    <!-- Easter Egg Video Modalı -->
     <div id="video-modal" class="hidden fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
         <button id="close-video-modal" class="absolute top-4 right-4 text-white/70 hover:text-white transition-colors text-5xl font-bold z-50">&times;</button>
         <div class="w-full max-w-4xl video-aspect-ratio">
@@ -178,7 +178,7 @@
             githubLink.addEventListener('click', (e) => { e.preventDefault(); showPage('github'); });
             showPage('home');
 
-            // --- EASTER EGG (GÜNCELLENDİ) ---
+            // --- EASTER EGG ---
             const logoImage = document.getElementById('logo-image');
             const videoModal = document.getElementById('video-modal');
             const videoIframe = document.getElementById('video-iframe');
@@ -191,16 +191,16 @@
                     const videoId = 'HYKLZOo3DM4';
                     const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&controls=0&modestbranding=1&playlist=${videoId}`;
                     
-                    videoIframe.src = embedUrl; // Video kaynağını ayarla
-                    videoModal.classList.remove('hidden'); // Modalı göster
+                    videoIframe.src = embedUrl;
+                    videoModal.classList.remove('hidden');
                     
-                    logoClickCount = 0; // Sayacı sıfırla
+                    logoClickCount = 0;
                 }
             });
 
             closeVideoModal.addEventListener('click', () => {
-                videoModal.classList.add('hidden'); // Modalı gizle
-                videoIframe.src = ''; // Videoyu durdurmak için kaynağı temizle
+                videoModal.classList.add('hidden');
+                videoIframe.src = '';
             });
 
             // --- Platform Seçme Menüsü ---
@@ -217,11 +217,15 @@
                     platformArrow.classList.remove('rotate-180');
                 }
             });
+
+            // --- GÜNCELLENMİŞ İNDİRME BUTONU İŞLEVİ ---
             downloadButton.addEventListener('click', () => {
                 if (selectedPlatform === 'Bilgisayar') {
                     window.open('https://ors.openani.me/tr', '_blank');
                 } else if (selectedPlatform === 'Android') {
-                    alert('Android sürümü yakında kullanıma sunulacaktır!');
+                    // Alert yerine doğrudan indirme linkini yeni sekmede aç
+                    const androidDownloadUrl = 'https://cdn.discordapp.com/attachments/987069582382608454/1407424675973173388/OpenAnime_v1.2.0.apk?ex=68bb25df&is=68b9d45f&hm=9f8a715295ab835e8330186128459d889024f2362debe8eff1baf0050877af3c&';
+                    window.open(androidDownloadUrl, '_blank');
                 }
             });
 
@@ -260,3 +264,4 @@
 
 </body>
 </html>
+
