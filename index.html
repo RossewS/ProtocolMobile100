@@ -66,9 +66,18 @@
         <!-- Header / Navigasyon -->
         <header class="w-full pt-6 sticky top-0 z-20 bg-gray-50/80 backdrop-blur-sm">
             <nav class="relative flex items-center justify-center max-w-md mx-auto pb-1">
-                <a href="#home" id="home-link" class="nav-link flex-1 text-center px-4 sm:px-6 py-2 text-sm rounded-md transition-colors">Ana sayfa</a>
-                <a href="#changelog" id="changelog-link" class="nav-link flex-1 text-center px-4 sm:px-6 py-2 text-sm rounded-md transition-colors">Değişiklikler</a>
-                <a href="#github" id="github-link" class="nav-link flex-1 text-center px-4 sm:px-6 py-2 text-sm rounded-md transition-colors">GitHub</a>
+                <a href="#home" id="home-link" class="nav-link flex-1 flex items-center justify-center gap-2 text-center px-4 sm:px-6 py-2 text-sm rounded-md transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+                    <span>Ana sayfa</span>
+                </a>
+                <a href="#changelog" id="changelog-link" class="nav-link flex-1 flex items-center justify-center gap-2 text-center px-4 sm:px-6 py-2 text-sm rounded-md transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+                    <span>Değişiklikler</span>
+                </a>
+                <a href="#links" id="links-link" class="nav-link flex-1 flex items-center justify-center gap-2 text-center px-4 sm:px-6 py-2 text-sm rounded-md transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>
+                    <span>Bağlantılar</span>
+                </a>
                 <div id="nav-indicator" class="absolute bottom-0 h-0.5 bg-indigo-600 rounded-full transition-all duration-300 ease-in-out"></div>
             </nav>
         </header>
@@ -84,12 +93,13 @@
                 <h1 class="stagger-item text-5xl font-bold tracking-tight text-gray-900 mb-3">OpenAnime</h1>
                 <p class="stagger-item text-lg text-gray-500 mb-8">Anime izleme deneyimi, sadeleştirildi.</p>
                 <div class="stagger-item flex items-center justify-center gap-3 mb-6">
-                    <div class="relative" id="platform-dropdown-container">
+                    <!-- BUG FIX: z-index artırılarak menünün diğer elementlerin üzerinde kalması garantilendi -->
+                    <div class="relative z-30" id="platform-dropdown-container">
                         <button id="platform-button" class="flex items-center justify-between w-40 px-5 py-3 text-base font-semibold text-gray-700 bg-gray-200 rounded-2xl">
                             <span id="selected-platform-text">Android</span>
                             <svg id="platform-arrow" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
                         </button>
-                        <div id="platform-menu" class="absolute hidden w-full mt-2 bg-white rounded-xl shadow-lg border border-gray-200/80 z-10">
+                        <div id="platform-menu" class="absolute hidden w-full mt-2 bg-white rounded-xl shadow-lg border border-gray-200/80">
                             <a href="#" data-platform="Android" class="platform-option block px-4 py-2.5 text-left text-gray-700 hover:bg-gray-100 rounded-t-xl">Android</a>
                             <a href="#" data-platform="Bilgisayar" class="platform-option block px-4 py-2.5 text-left text-gray-700 hover:bg-gray-100 rounded-b-xl">Bilgisayar</a>
                         </div>
@@ -115,16 +125,14 @@
                                 <li><strong>Kapalı beta sürecine katılan herkes</strong> ise teşekkür amacıyla <strong>2 ay boyunca reklamsız</strong> izlemeye devam edecek.</li>
                             </ul>
                         </div>
-
                         <p class="stagger-item mt-4 text-center font-semibold">🚀 Ayrıca, yakında yalnızca premium üyeler için gelecek birçok özel özellik de sizleri bekliyor!</p>
-                        
                         <p class="stagger-item mt-4 text-center text-indigo-600 font-medium">Keyifli seyirler dileriz!</p>
                     </div>
                 </section>
             </div>
 
-            <!-- GitHub Sayfası İçeriği -->
-            <div id="github-content" class="w-full max-w-2xl text-left hidden">
+            <!-- Bağlantılar (Eski GitHub) Sayfası İçeriği -->
+            <div id="links-content" class="w-full max-w-2xl text-left hidden">
                 <div class="bg-white rounded-2xl p-6 md:p-8 w-full shadow-md border border-gray-200/80">
                     <div class="stagger-item flex items-center mb-6">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-800 mr-4" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -153,7 +161,7 @@
     </div>
 
     <!-- Easter Egg Video Modalı -->
-    <div id="video-modal" class="hidden fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4">
+    <div id="video-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
         <button id="close-video-modal" class="absolute top-4 right-4 text-white/70 hover:text-white transition-colors text-5xl font-bold z-50">&times;</button>
         <div class="w-full max-w-4xl video-aspect-ratio">
             <iframe id="video-iframe" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -165,16 +173,16 @@
             // Sayfa navigasyon elementleri
             const homeLink = document.getElementById('home-link');
             const changelogLink = document.getElementById('changelog-link');
-            const githubLink = document.getElementById('github-link');
+            const linksLink = document.getElementById('links-link'); // Güncellendi
             const homeContent = document.getElementById('home-content');
             const changelogContent = document.getElementById('changelog-content');
-            const githubContent = document.getElementById('github-content');
+            const linksContent = document.getElementById('links-content'); // Güncellendi
             const navIndicator = document.getElementById('nav-indicator');
-            const navLinks = [homeLink, changelogLink, githubLink];
+            const navLinks = [homeLink, changelogLink, linksLink]; // Güncellendi
             const contentPages = {
                 home: homeContent,
                 changelog: changelogContent,
-                github: githubContent,
+                links: linksContent, // Güncellendi
             };
 
             // Platform seçme elementleri
@@ -199,8 +207,7 @@
                 const itemsToAnimate = container.querySelectorAll('.stagger-item');
                 itemsToAnimate.forEach((item, index) => {
                     item.classList.remove('animate-in');
-                    // item'ın style'ını sıfırlamak için küçük bir gecikme
-                    void item.offsetWidth; // Tarayıcıyı reflow yapmaya zorlar
+                    void item.offsetWidth; 
                     item.style.animationDelay = `${index * 20}ms`;
                     item.classList.add('animate-in');
                 });
@@ -213,7 +220,6 @@
                 const contentToShow = contentPages[pageId];
                 const linkToActivate = document.getElementById(`${pageId}-link`);
                 
-                // Link stillerini güncelle
                 navLinks.forEach(link => {
                     link.classList.remove('text-gray-900', 'font-semibold');
                     link.classList.add('text-gray-500', 'font-medium');
@@ -226,7 +232,6 @@
 
                 if(contentToShow) {
                     contentToShow.classList.remove('hidden');
-                    // Yeni sayfa içeriği için animasyonu tetikle
                     triggerStaggerAnimation(contentToShow);
                 }
                 updateIndicator(linkToActivate);
@@ -241,10 +246,8 @@
                 });
             });
             
-            // Başlangıç ayarı
             showPage('home');
 
-            // Pencere yeniden boyutlandırıldığında göstergeyi ayarla
             window.addEventListener('resize', () => {
                 const activeLink = navLinks.find(link => link.classList.contains('text-gray-900'));
                 updateIndicator(activeLink);
@@ -254,42 +257,38 @@
             const logoImage = document.getElementById('logo-image');
             const videoModal = document.getElementById('video-modal');
             const videoIframe = document.getElementById('video-iframe');
-            const closeVideoModal = document.getElementById('close-video-modal');
+            const closeVideoModalBtn = document.getElementById('close-video-modal');
             let logoClickCount = 0;
+
+            const openVideoModal = () => {
+                const videoId = 'HYKLZOo3DM4';
+                const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&controls=0&modestbranding=1&playlist=${videoId}`;
+                videoIframe.src = embedUrl;
+                videoModal.classList.remove('hidden');
+            };
+
+            const closeVideoModal = () => {
+                videoModal.classList.add('hidden');
+                videoIframe.src = ''; // Videoyu durdurmak için kaynak temizlenir
+            };
 
             logoImage.addEventListener('click', () => {
                 logoClickCount++;
                 if (logoClickCount === 7) {
-                    const videoId = 'HYKLZOo3DM4';
-                    const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&controls=0&modestbranding=1&playlist=${videoId}`;
-                    
-                    videoIframe.src = embedUrl;
-                    videoModal.classList.remove('hidden');
-                    
-                    logoClickCount = 0;
+                    openVideoModal();
+                    logoClickCount = 0; // Sayacı sıfırla
                 }
             });
 
-            closeVideoModal.addEventListener('click', () => {
-                videoModal.classList.add('hidden');
-                videoIframe.src = '';
-            });
+            closeVideoModalBtn.addEventListener('click', closeVideoModal);
+
 
             // --- Platform Seçme Menüsü ---
             platformButton.addEventListener('click', () => {
                 platformMenu.classList.toggle('hidden');
                 platformArrow.classList.toggle('rotate-180');
             });
-            platformMenu.addEventListener('click', (e) => {
-                if (e.target.matches('.platform-option')) {
-                    e.preventDefault();
-                    selectedPlatform = e.target.dataset.platform;
-                    selectedPlatformText.textContent = selectedPlatform;
-                    platformMenu.classList.add('hidden');
-                    platformArrow.classList.remove('rotate-180');
-                }
-            });
-
+            
             // --- GÜNCELLENMİŞ İNDİRME BUTONU İŞLEVİ ---
             downloadButton.addEventListener('click', () => {
                 if (selectedPlatform === 'Bilgisayar') {
@@ -300,7 +299,7 @@
                 }
             });
 
-            // --- Özel Sağ Tık Menüsü ---
+            // --- Özel Sağ Tık Menüsü & Dropdown Kapatma ---
             const contextMenu = document.getElementById('custom-context-menu');
             document.addEventListener('contextmenu', (e) => {
                 e.preventDefault();
@@ -310,8 +309,9 @@
                 contextMenu.classList.remove('hidden');
                 contextMenu.classList.add('context-menu-active');
             });
+            
             document.addEventListener('click', (e) => {
-                if (!contextMenu.contains(e.target) && !platformButton.contains(e.target)) {
+                if (!contextMenu.contains(e.target)) {
                      contextMenu.classList.add('hidden');
                      contextMenu.classList.remove('context-menu-active');
                 }
@@ -319,7 +319,13 @@
                     platformMenu.classList.add('hidden');
                     platformArrow.classList.remove('rotate-180');
                 }
+                if (e.target.closest('.platform-option')) {
+                    e.preventDefault();
+                    selectedPlatform = e.target.closest('.platform-option').dataset.platform;
+                    selectedPlatformText.textContent = selectedPlatform;
+                }
             });
+
             document.getElementById('reload-page').addEventListener('click', () => location.reload());
             document.getElementById('go-to-pc-version').addEventListener('click', () => window.open('https://ors.openani.me/tr', '_blank'));
 
