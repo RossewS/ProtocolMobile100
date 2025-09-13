@@ -26,12 +26,6 @@
             to { opacity: 1; transform: scale(1); }
         }
         .context-menu-active { animation: contextMenuFadeIn 0.15s ease-out; }
-        .nav-link { transition: all 0.2s ease-in-out; }
-        .nav-active {
-            background-color: white; color: black;
-            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-        }
-        .nav-inactive { background-color: transparent; color: #4b5563; }
         
         /* Video modalı için stil */
         .video-aspect-ratio {
@@ -55,10 +49,11 @@
         
         <!-- Header / Navigasyon -->
         <header class="w-full pt-6 sticky top-0 z-20 bg-gray-50/80 backdrop-blur-sm">
-            <nav class="flex items-center justify-center space-x-1 sm:space-x-2 bg-gray-200/80 p-1 rounded-lg max-w-md mx-auto">
-                <a href="#home" id="home-link" class="nav-link px-4 sm:px-6 py-1.5 text-sm font-semibold rounded-md nav-active">Ana sayfa</a>
-                <a href="#changelog" id="changelog-link" class="nav-link px-4 sm:px-6 py-1.5 text-sm font-semibold rounded-md nav-inactive">Değişiklikler</a>
-                <a href="#github" id="github-link" class="nav-link px-4 sm:px-6 py-1.5 text-sm font-semibold rounded-md nav-inactive">GitHub</a>
+            <nav class="relative flex items-center justify-center space-x-1 sm:space-x-2 max-w-md mx-auto pb-1">
+                <a href="#home" id="home-link" class="nav-link px-4 sm:px-6 py-2 text-sm rounded-md transition-colors">Ana sayfa</a>
+                <a href="#changelog" id="changelog-link" class="nav-link px-4 sm:px-6 py-2 text-sm rounded-md transition-colors">Değişiklikler</a>
+                <a href="#github" id="github-link" class="nav-link px-4 sm:px-6 py-2 text-sm rounded-md transition-colors">GitHub</a>
+                <div id="nav-indicator" class="absolute bottom-0 h-0.5 bg-indigo-600 rounded-full transition-all duration-300 ease-in-out"></div>
             </nav>
         </header>
 
@@ -158,6 +153,8 @@
             const homeContent = document.getElementById('home-content');
             const changelogContent = document.getElementById('changelog-content');
             const githubContent = document.getElementById('github-content');
+            const navIndicator = document.getElementById('nav-indicator');
+            const navLinks = [homeLink, changelogLink, githubLink];
 
             // Platform seçme elementleri
             const dropdownContainer = document.getElementById('platform-dropdown-container');
@@ -168,31 +165,55 @@
             const downloadButton = document.getElementById('download-button');
             let selectedPlatform = 'Android';
 
+            // Navigasyon göstergesini güncelleyen fonksiyon
+            function updateIndicator(element) {
+                if (element) {
+                    navIndicator.style.width = `${element.offsetWidth}px`;
+                    navIndicator.style.left = `${element.offsetLeft}px`;
+                }
+            }
+
             // Sayfa değiştirme fonksiyonu
             function showPage(pageId) {
                 [homeContent, changelogContent, githubContent].forEach(el => el.classList.add('hidden'));
-                [homeLink, changelogLink, githubLink].forEach(el => {
-                    el.classList.remove('nav-active');
-                    el.classList.add('nav-inactive');
-                });
                 
                 let contentToShow, linkToActivate;
                 if (pageId === 'home') { contentToShow = homeContent; linkToActivate = homeLink; } 
                 else if (pageId === 'changelog') { contentToShow = changelogContent; linkToActivate = changelogLink; } 
                 else if (pageId === 'github') { contentToShow = githubContent; linkToActivate = githubLink; }
 
-                if(contentToShow) contentToShow.classList.remove('hidden');
-                if(linkToActivate) {
-                    linkToActivate.classList.add('nav-active');
-                    linkToActivate.classList.remove('nav-inactive');
+                // Link stillerini güncelle
+                navLinks.forEach(link => {
+                    link.classList.remove('text-gray-900', 'font-semibold');
+                    link.classList.add('text-gray-500', 'font-medium');
+                });
+                
+                if (linkToActivate) {
+                    linkToActivate.classList.remove('text-gray-500', 'font-medium');
+                    linkToActivate.classList.add('text-gray-900', 'font-semibold');
                 }
+
+                if(contentToShow) contentToShow.classList.remove('hidden');
+                updateIndicator(linkToActivate);
             }
 
             // Navigasyon tıklama olayları
-            homeLink.addEventListener('click', (e) => { e.preventDefault(); showPage('home'); });
-            changelogLink.addEventListener('click', (e) => { e.preventDefault(); showPage('changelog'); });
-            githubLink.addEventListener('click', (e) => { e.preventDefault(); showPage('github'); });
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageId = link.id.replace('-link', '');
+                    showPage(pageId);
+                });
+            });
+
+            // Başlangıç ayarı
             showPage('home');
+
+            // Pencere yeniden boyutlandırıldığında göstergeyi ayarla
+            window.addEventListener('resize', () => {
+                const activeLink = navLinks.find(link => link.classList.contains('text-gray-900'));
+                updateIndicator(activeLink);
+            });
 
             // --- EASTER EGG ---
             const logoImage = document.getElementById('logo-image');
@@ -239,7 +260,6 @@
                 if (selectedPlatform === 'Bilgisayar') {
                     window.open('https://ors.openani.me/tr', '_blank');
                 } else if (selectedPlatform === 'Android') {
-                    // Alert yerine doğrudan indirme linkini yeni sekmede aç
                     const androidDownloadUrl = 'https://cdn.discordapp.com/attachments/987069582382608454/1407424675973173388/OpenAnime_v1.2.0.apk?ex=68c65a9f&is=68c5091f&hm=0d06c683753ac5932183f7c633af8e0b5f610480127e86d2280b7a25006ffdb7&';
                     window.open(androidDownloadUrl, '_blank');
                 }
@@ -280,4 +300,5 @@
 
 </body>
 </html>
+
 
