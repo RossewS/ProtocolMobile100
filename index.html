@@ -16,11 +16,27 @@
     <style>
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; background-color: #f9fafb; }
-        .page-section { animation: slideDown 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        
+        /* --- Stagger Animation Stilleri --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+        
+        .stagger-item {
+            opacity: 0; /* Animasyon başlangıcında görünmez yap */
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
         @keyframes contextMenuFadeIn {
             from { opacity: 0; transform: scale(0.95); }
             to { opacity: 1; transform: scale(1); }
@@ -49,10 +65,10 @@
         
         <!-- Header / Navigasyon -->
         <header class="w-full pt-6 sticky top-0 z-20 bg-gray-50/80 backdrop-blur-sm">
-            <nav class="relative flex items-center justify-center space-x-1 sm:space-x-2 max-w-md mx-auto pb-1">
-                <a href="#home" id="home-link" class="nav-link px-4 sm:px-6 py-2 text-sm rounded-md transition-colors">Ana sayfa</a>
-                <a href="#changelog" id="changelog-link" class="nav-link px-4 sm:px-6 py-2 text-sm rounded-md transition-colors">Değişiklikler</a>
-                <a href="#github" id="github-link" class="nav-link px-4 sm:px-6 py-2 text-sm rounded-md transition-colors">GitHub</a>
+            <nav class="relative flex items-center justify-center max-w-md mx-auto pb-1">
+                <a href="#home" id="home-link" class="nav-link flex-1 text-center px-4 sm:px-6 py-2 text-sm rounded-md transition-colors">Ana sayfa</a>
+                <a href="#changelog" id="changelog-link" class="nav-link flex-1 text-center px-4 sm:px-6 py-2 text-sm rounded-md transition-colors">Değişiklikler</a>
+                <a href="#github" id="github-link" class="nav-link flex-1 text-center px-4 sm:px-6 py-2 text-sm rounded-md transition-colors">GitHub</a>
                 <div id="nav-indicator" class="absolute bottom-0 h-0.5 bg-indigo-600 rounded-full transition-all duration-300 ease-in-out"></div>
             </nav>
         </header>
@@ -61,13 +77,13 @@
         <main class="flex-grow flex flex-col items-center justify-center p-4">
             
             <!-- Ana Sayfa İçeriği -->
-            <div id="home-content" class="page-section w-full max-w-sm text-center">
-                <div id="logo-container" class="inline-flex items-center justify-center bg-white p-2.5 rounded-2xl shadow-md border border-gray-200 mb-6 cursor-pointer">
+            <div id="home-content" class="w-full max-w-sm text-center">
+                <div id="logo-container" class="stagger-item inline-flex items-center justify-center bg-white p-2.5 rounded-2xl shadow-md border border-gray-200 mb-6 cursor-pointer">
                     <img id="logo-image" src="https://i.ibb.co/sMSTzXm/6733.png" alt="Open Anime Logo" class="w-10 h-10">
                 </div>
-                <h1 class="text-5xl font-bold tracking-tight text-gray-900 mb-3">OpenAnime</h1>
-                <p class="text-lg text-gray-500 mb-8">Anime izleme deneyimi, sadeleştirildi.</p>
-                <div class="flex items-center justify-center gap-3 mb-6">
+                <h1 class="stagger-item text-5xl font-bold tracking-tight text-gray-900 mb-3">OpenAnime</h1>
+                <p class="stagger-item text-lg text-gray-500 mb-8">Anime izleme deneyimi, sadeleştirildi.</p>
+                <div class="stagger-item flex items-center justify-center gap-3 mb-6">
                     <div class="relative" id="platform-dropdown-container">
                         <button id="platform-button" class="flex items-center justify-between w-40 px-5 py-3 text-base font-semibold text-gray-700 bg-gray-200 rounded-2xl">
                             <span id="selected-platform-text">Android</span>
@@ -80,18 +96,18 @@
                     </div>
                     <button id="download-button" class="flex items-center justify-center px-8 py-3 text-base font-semibold text-white bg-pink-500 rounded-2xl hover:bg-pink-600 transition-colors">İndir</button>
                 </div>
-                <span class="font-semibold text-indigo-600">v1.2.0</span>
+                <span class="stagger-item font-semibold text-indigo-600">v1.2.0</span>
             </div>
 
             <!-- Değişiklikler Sayfası İçeriği -->
-            <div id="changelog-content" class="page-section w-full max-w-2xl text-left hidden">
+            <div id="changelog-content" class="w-full max-w-2xl text-left hidden">
                 <section class="bg-white rounded-2xl p-6 md:p-8 w-full shadow-md border border-gray-200/80">
-                    <h2 class="text-2xl font-bold mb-4 text-center text-indigo-700">Mobil Uygulama Yayında!</h2>
+                    <h2 class="stagger-item text-2xl font-bold mb-4 text-center text-indigo-700">Mobil Uygulama Yayında!</h2>
                     <div class="text-gray-700 space-y-4">
-                        <p class="text-center text-lg"><strong>Uzun süredir beklenen OpenAnime mobil uygulamamız artık yayında!</strong> 🎉</p>
-                        <p class="text-center">Birkaç gün içinde Play Store’da da yerini alacak, ancak beklemenize gerek yok — APK dosyasını şimdiden sizinle paylaşıyoruz.</p>
+                        <p class="stagger-item text-center text-lg"><strong>Uzun süredir beklenen OpenAnime mobil uygulamamız artık yayında!</strong> 🎉</p>
+                        <p class="stagger-item text-center">Birkaç gün içinde Play Store’da da yerini alacak, ancak beklemenize gerek yok — APK dosyasını şimdiden sizinle paylaşıyoruz.</p>
                         
-                        <div class="pt-4 border-t border-gray-200">
+                        <div class="stagger-item pt-4 border-t border-gray-200">
                             <p class="font-semibold text-gray-800">✨ <strong>Reklamsız deneyim için:</strong></p>
                             <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
                                 <li>Patreon üzerinden destek olan kullanıcılarımızın hesaplarına <strong>premium</strong> tanımlanacak.</li>
@@ -100,24 +116,24 @@
                             </ul>
                         </div>
 
-                        <p class="mt-4 text-center font-semibold">🚀 Ayrıca, yakında yalnızca premium üyeler için gelecek birçok özel özellik de sizleri bekliyor!</p>
+                        <p class="stagger-item mt-4 text-center font-semibold">🚀 Ayrıca, yakında yalnızca premium üyeler için gelecek birçok özel özellik de sizleri bekliyor!</p>
                         
-                        <p class="mt-4 text-center text-indigo-600 font-medium">Keyifli seyirler dileriz!</p>
+                        <p class="stagger-item mt-4 text-center text-indigo-600 font-medium">Keyifli seyirler dileriz!</p>
                     </div>
                 </section>
             </div>
 
             <!-- GitHub Sayfası İçeriği -->
-            <div id="github-content" class="page-section w-full max-w-2xl text-left hidden">
+            <div id="github-content" class="w-full max-w-2xl text-left hidden">
                 <div class="bg-white rounded-2xl p-6 md:p-8 w-full shadow-md border border-gray-200/80">
-                    <div class="flex items-center mb-6">
+                    <div class="stagger-item flex items-center mb-6">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-800 mr-4" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
                         <div>
                             <h2 class="text-2xl font-bold text-gray-800">GitHub'da Açık Kaynak</h2>
                             <p class="text-gray-500">Projelerimizi keşfedin ve katkıda bulunun.</p>
                         </div>
                     </div>
-                    <a href="https://github.com/OpenAnime" target="_blank" class="w-full block text-center bg-gray-800 text-white font-semibold py-3 rounded-lg hover:bg-gray-900 transition-colors">GitHub'da Ziyaret Et</a>
+                    <a href="https://github.com/OpenAnime" target="_blank" class="stagger-item w-full block text-center bg-gray-800 text-white font-semibold py-3 rounded-lg hover:bg-gray-900 transition-colors">GitHub'da Ziyaret Et</a>
                 </div>
             </div>
         </main>
@@ -155,6 +171,11 @@
             const githubContent = document.getElementById('github-content');
             const navIndicator = document.getElementById('nav-indicator');
             const navLinks = [homeLink, changelogLink, githubLink];
+            const contentPages = {
+                home: homeContent,
+                changelog: changelogContent,
+                github: githubContent,
+            };
 
             // Platform seçme elementleri
             const dropdownContainer = document.getElementById('platform-dropdown-container');
@@ -172,16 +193,26 @@
                     navIndicator.style.left = `${element.offsetLeft}px`;
                 }
             }
+            
+            // Stagger animasyonunu tetikleyen fonksiyon
+            function triggerStaggerAnimation(container) {
+                const itemsToAnimate = container.querySelectorAll('.stagger-item');
+                itemsToAnimate.forEach((item, index) => {
+                    item.classList.remove('animate-in');
+                    // item'ın style'ını sıfırlamak için küçük bir gecikme
+                    void item.offsetWidth; // Tarayıcıyı reflow yapmaya zorlar
+                    item.style.animationDelay = `${index * 20}ms`;
+                    item.classList.add('animate-in');
+                });
+            }
 
             // Sayfa değiştirme fonksiyonu
             function showPage(pageId) {
-                [homeContent, changelogContent, githubContent].forEach(el => el.classList.add('hidden'));
+                Object.values(contentPages).forEach(el => el.classList.add('hidden'));
                 
-                let contentToShow, linkToActivate;
-                if (pageId === 'home') { contentToShow = homeContent; linkToActivate = homeLink; } 
-                else if (pageId === 'changelog') { contentToShow = changelogContent; linkToActivate = changelogLink; } 
-                else if (pageId === 'github') { contentToShow = githubContent; linkToActivate = githubLink; }
-
+                const contentToShow = contentPages[pageId];
+                const linkToActivate = document.getElementById(`${pageId}-link`);
+                
                 // Link stillerini güncelle
                 navLinks.forEach(link => {
                     link.classList.remove('text-gray-900', 'font-semibold');
@@ -193,7 +224,11 @@
                     linkToActivate.classList.add('text-gray-900', 'font-semibold');
                 }
 
-                if(contentToShow) contentToShow.classList.remove('hidden');
+                if(contentToShow) {
+                    contentToShow.classList.remove('hidden');
+                    // Yeni sayfa içeriği için animasyonu tetikle
+                    triggerStaggerAnimation(contentToShow);
+                }
                 updateIndicator(linkToActivate);
             }
 
@@ -205,7 +240,7 @@
                     showPage(pageId);
                 });
             });
-
+            
             // Başlangıç ayarı
             showPage('home');
 
