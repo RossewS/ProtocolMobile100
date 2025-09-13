@@ -54,8 +54,8 @@
     <div class="flex flex-col min-h-screen">
         
         <!-- Header / Navigasyon -->
-        <header class="w-full max-w-md mx-auto pt-6 px-4 sticky top-0 z-20 bg-gray-50/80 backdrop-blur-sm">
-            <nav class="flex items-center justify-center space-x-1 sm:space-x-2 bg-gray-200/80 p-1 rounded-lg">
+        <header class="w-full pt-6 sticky top-0 z-20 bg-gray-50/80 backdrop-blur-sm">
+            <nav class="flex items-center justify-center space-x-1 sm:space-x-2 bg-gray-200/80 p-1 rounded-lg max-w-md mx-auto">
                 <a href="#home" id="home-link" class="nav-link px-4 sm:px-6 py-1.5 text-sm font-semibold rounded-md nav-active">Ana sayfa</a>
                 <a href="#changelog" id="changelog-link" class="nav-link px-4 sm:px-6 py-1.5 text-sm font-semibold rounded-md nav-inactive">Değişiklikler</a>
                 <a href="#github" id="github-link" class="nav-link px-4 sm:px-6 py-1.5 text-sm font-semibold rounded-md nav-inactive">GitHub</a>
@@ -67,8 +67,8 @@
             
             <!-- Ana Sayfa İçeriği -->
             <div id="home-content" class="page-section w-full max-w-sm text-center">
-                <div id="logo-container" class="inline-flex items-center justify-center bg-white p-3 rounded-2xl shadow-md border border-gray-200 mb-6 cursor-pointer">
-                    <img id="logo-image" src="https://i.ibb.co/sMSTzXm/6733.png" alt="Open Anime Logo" class="w-12 h-12">
+                <div id="logo-container" class="inline-flex items-center justify-center bg-white p-2.5 rounded-2xl shadow-md border border-gray-200 mb-6 cursor-pointer">
+                    <img id="logo-image" src="https://i.ibb.co/sMSTzXm/6733.png" alt="Open Anime Logo" class="w-10 h-10">
                 </div>
                 <h1 class="text-5xl font-bold tracking-tight text-gray-900 mb-3">OpenAnime</h1>
                 <p class="text-lg text-gray-500 mb-8">Anime izleme deneyimi, sadeleştirildi.</p>
@@ -85,14 +85,30 @@
                     </div>
                     <button id="download-button" class="flex items-center justify-center px-8 py-3 text-base font-semibold text-white bg-pink-500 rounded-2xl hover:bg-pink-600 transition-colors">İndir</button>
                 </div>
-                <span class="font-semibold text-indigo-600">v1.0.0</span>
+                <span class="font-semibold text-indigo-600">v1.2.0</span>
             </div>
 
             <!-- Değişiklikler Sayfası İçeriği -->
             <div id="changelog-content" class="page-section w-full max-w-2xl text-left hidden">
                 <section class="bg-white rounded-2xl p-6 md:p-8 w-full shadow-md border border-gray-200/80">
-                    <h2 class="text-2xl font-bold mb-4 text-center text-indigo-700">Sürüm 1.0.0</h2>
-                    <p class="text-center text-gray-500">Değişiklikler henüz yayınlanmadı.</p>
+                    <h2 class="text-2xl font-bold mb-4 text-center text-indigo-700">Mobil Uygulama Yayında!</h2>
+                    <div class="text-gray-700 space-y-4">
+                        <p class="text-center text-lg"><strong>Uzun süredir beklenen OpenAnime mobil uygulamamız artık yayında!</strong> 🎉</p>
+                        <p class="text-center">Birkaç gün içinde Play Store’da da yerini alacak, ancak beklemenize gerek yok — APK dosyasını şimdiden sizinle paylaşıyoruz.</p>
+                        
+                        <div class="pt-4 border-t border-gray-200">
+                            <p class="font-semibold text-gray-800">✨ <strong>Reklamsız deneyim için:</strong></p>
+                            <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
+                                <li>Patreon üzerinden destek olan kullanıcılarımızın hesaplarına <strong>premium</strong> tanımlanacak.</li>
+                                <li><strong>Bizimle çalışan fansublar</strong> hiçbir zaman reklam görmeyecek.</li>
+                                <li><strong>Kapalı beta sürecine katılan herkes</strong> ise teşekkür amacıyla <strong>2 ay boyunca reklamsız</strong> izlemeye devam edecek.</li>
+                            </ul>
+                        </div>
+
+                        <p class="mt-4 text-center font-semibold">🚀 Ayrıca, yakında yalnızca premium üyeler için gelecek birçok özel özellik de sizleri bekliyor!</p>
+                        
+                        <p class="mt-4 text-center text-indigo-600 font-medium">Keyifli seyirler dileriz!</p>
+                    </div>
                 </section>
             </div>
 
@@ -224,7 +240,7 @@
                     window.open('https://ors.openani.me/tr', '_blank');
                 } else if (selectedPlatform === 'Android') {
                     // Alert yerine doğrudan indirme linkini yeni sekmede aç
-                    const androidDownloadUrl = 'https://cdn.discordapp.com/attachments/987069582382608454/1407424675973173388/OpenAnime_v1.2.0.apk?ex=68bb25df&is=68b9d45f&hm=9f8a715295ab835e8330186128459d889024f2362debe8eff1baf0050877af3c&';
+                    const androidDownloadUrl = 'https://cdn.discordapp.com/attachments/987069582382608454/1407424675973173388/OpenAnime_v1.2.0.apk?ex=68c65a9f&is=68c5091f&hm=0d06c683753ac5932183f7c633af8e0b5f610480127e86d2280b7a25006ffdb7&';
                     window.open(androidDownloadUrl, '_blank');
                 }
             });
